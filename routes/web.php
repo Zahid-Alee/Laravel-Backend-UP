@@ -1,20 +1,22 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Api\PersonController;
+use App\Http\Controllers\PersonController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-  $user = auth()->user();
-  $user->assignRole('administrator'); // Example of assigning a role to the user
-
-      
     return Inertia::render('welcome');
 })->name('home');
 
+
+Route::get('/api/test/make/admin', function () {
+    $user = auth()->user();
+    $user->assignRole('administrator');
+    return Inertia::render('welcome');
+})->name('assign.admin.role');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
