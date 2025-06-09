@@ -18,6 +18,13 @@ Route::get('/api/test/make/admin', function () {
     return Inertia::render('welcome');
 })->name('assign.admin.role');
 
+
+Route::get('/api/testing', function () {
+    return Inertia::render('ApiTester');
+})->name('test.api.module');
+
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');

@@ -147,9 +147,6 @@ class AdminController extends Controller
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:500',
             'date_of_birth' => 'nullable|date|before:today',
-            'student_id' => 'nullable|string|unique:users,student_id',
-            'employee_id' => 'nullable|string|unique:users,employee_id',
-            'status' => 'required|in:active,inactive,suspended',
         ]);
 
         try {
@@ -161,9 +158,6 @@ class AdminController extends Controller
                 'phone',
                 'address',
                 'date_of_birth',
-                'student_id',
-                'employee_id',
-                'status'
             ]);
             $userData['password'] = Hash::make($request->password);
 
@@ -246,8 +240,6 @@ class AdminController extends Controller
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:500',
             'date_of_birth' => 'nullable|date|before:today',
-            'student_id' => ['nullable', 'string', Rule::unique('users')->ignore($user->id)],
-            'employee_id' => ['nullable', 'string', Rule::unique('users')->ignore($user->id)],
             'status' => 'required|in:active,inactive,suspended',
         ]);
 
@@ -260,8 +252,6 @@ class AdminController extends Controller
                 'phone',
                 'address',
                 'date_of_birth',
-                'student_id',
-                'employee_id',
                 'status'
             ]);
 
